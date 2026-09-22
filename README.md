@@ -1,4 +1,4 @@
-# Trabajo Práctico N° 1 - EventoUniversitario
+# Trabajo Práctico N° 1 - modelo.EventoUniversitario
 
 * **Materia:** Paradigmas de Programación
 * **Legajo:** 53343

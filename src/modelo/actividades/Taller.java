@@ -1,3 +1,5 @@
+package modelo.actividades;
+
 public class Taller extends Actividad {
     private boolean requiereNotebook;
 

@@ -1,7 +1,14 @@
+package modelo;
+
+import modelo.actividades.Actividad;
+import modelo.actividades.Charla;
+import modelo.actividades.Taller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import modelo.actividades.Actividad;
+import excepciones.CupoExcedidoException;
 
 public class EventoUniversitario {
     private final String Id;
@@ -15,7 +22,7 @@ public class EventoUniversitario {
 
     static {
         cantidadEventos = 0;
-        System.out.println("Inicializador estático: se cargó la clase EventoUniversitario.");
+        System.out.println("Inicializador estático: se cargó la clase modelo.EventoUniversitario.");
     }
 
     public EventoUniversitario(String id, String nombre, double costo, boolean esGratuito) {
@@ -106,7 +113,7 @@ public class EventoUniversitario {
         System.out.println("Evento codigo=" + Id);
         System.out.println("TÍtulo=" + titulo);
         System.out.println("Costo=" + this.calcularCostoEstimado());
-        System.out.println("Sala asignada: " + (sala != null ? sala.getNombre() : "Sin sala")+"\n");
+        System.out.println("modelo.Sala asignada: " + (sala != null ? sala.getNombre() : "Sin sala")+"\n");
         System.out.println("Actividades:");
         System.out.println("____________");
         for (Actividad actividad : actividades) {

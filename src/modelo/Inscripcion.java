@@ -1,4 +1,7 @@
+package modelo;
+
 import java.time.LocalDate;
+import modelo.actividades.Actividad;
 public class Inscripcion {
     private Actividad actividad;
     private Estudiante estudiante;

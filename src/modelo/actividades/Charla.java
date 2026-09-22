@@ -1,3 +1,5 @@
+package modelo.actividades;
+
 public class Charla extends Actividad {
     private String disertante;
 
@@ -26,7 +28,7 @@ public class Charla extends Actividad {
 
     @Override
     public String getTipo() {
-        return "Charla";
+        return "modelo.actividades.Charla";
     }
 }
 

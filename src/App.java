@@ -1,3 +1,10 @@
+import excepciones.CupoExcedidoException;
+import modelo.Estudiante;
+import modelo.EventoUniversitario;
+import modelo.Sala;
+import modelo.actividades.Charla;
+import modelo.actividades.Taller;
+
 import java.util.ArrayList;
 import java.util.List;
 public class App {
@@ -10,11 +17,11 @@ public class App {
                 false);
 
         Charla charla = new Charla(1, "Introducción a Algoritmos", "Alberto Cortez", 40);
-        Taller taller = new Taller(2, "Taller de Java", true, 15);
+        Taller taller = new Taller(2, "modelo.actividades.Taller de Java", true, 15);
 
         eventoPrincipal.asignarSala(sala1);
         eventoPrincipal.crearActividad(1, "Introducción a Algoritmos", 40, "charla");
-        eventoPrincipal.crearActividad(2, "Taller de Java", 15, "taller");
+        eventoPrincipal.crearActividad(2, "modelo.actividades.Taller de Java", 15, "taller");
 
         EventoUniversitario copiaeventoPrincipal = new EventoUniversitario("EVT-2", "Jornada de Tecnología Copia", 10000, false);
 
@@ -29,22 +36,39 @@ public class App {
         estudiantes.add(e2);
         estudiantes.add(e3);
 
+        // --- INSCRIPCIONES CON MANEJO DE EXCEPCIONES ---
+        try {
+            charla.inscribir(e1);
+        } catch (CupoExcedidoException e) {
+            System.out.println("Error al inscribir a e1 en charla: " + e.getMessage());
+        }
 
-        charla.inscribir(e1);
-        charla.inscribir(e2);
+        try {
+            charla.inscribir(e2);
+        } catch (CupoExcedidoException e) {
+            System.out.println("Error al inscribir a e2 en charla: " + e.getMessage());
+        }
 
-        taller.inscribir(e2);
-        taller.inscribir(e3);
+        try {
+            taller.inscribir(e2);
+        } catch (CupoExcedidoException e) {
+            System.out.println("Error al inscribir a e2 en taller: " + e.getMessage());
+        }
+
+        try {
+            taller.inscribir(e3);
+        } catch (CupoExcedidoException e) {
+            System.out.println("Error al inscribir a e3 en taller: " + e.getMessage());
+        }
 
         System.out.println("EVENTO PRINCIPAL");
         eventoPrincipal.mostrarDatos();
 
         System.out.println();
 
-
         System.out.println("COPIA DEL EVENTO");
-    copiaeventoPrincipal.mostrarDatos();
+        copiaeventoPrincipal.mostrarDatos();
 
-        System.out.println("Eventos creados: "+ EventoUniversitario.getCantidadEventos());
-     }
+        System.out.println("Eventos creados: " + EventoUniversitario.getCantidadEventos());
+    }
 }

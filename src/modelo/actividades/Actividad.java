@@ -1,3 +1,9 @@
+package modelo.actividades;
+
+import modelo.Estudiante;
+import modelo.Inscripcion;
+import excepciones.CupoExcedidoException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +18,7 @@ public abstract class Actividad {
 
     static {
         CUPO_MINIMO = 5;
-        System.out.println("Inicializador estático: se cargó la clase Actividad.");
+        System.out.println("Inicializador estático: se cargó la clase modelo.actividades.Actividad.");
     }
 
     public Actividad(int id, String titulo, int cupo) {
@@ -38,7 +44,16 @@ public abstract class Actividad {
         return id;
     }
 
-    public Inscripcion inscribir(Estudiante estudiante) {
+    public Inscripcion inscribir(Estudiante estudiante)
+            throws CupoExcedidoException {
+
+        if (inscripciones.size() >= cupoMaximo) {
+
+            throw new CupoExcedidoException(
+                    "No se puede inscribir al estudiante "
+                            + estudiante.getNombre()
+                            + ". Cupo máximo alcanzado.");
+        }
 
         Inscripcion inscripcion =
                 new Inscripcion(
@@ -52,6 +67,7 @@ public abstract class Actividad {
 
         return inscripcion;
     }
+
     public void mostrarInscripciones() {
 
         System.out.println("Inscripciones de: " + titulo);
