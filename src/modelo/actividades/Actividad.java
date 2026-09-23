@@ -3,11 +3,11 @@ package modelo.actividades;
 import modelo.Estudiante;
 import modelo.Inscripcion;
 import excepciones.CupoExcedidoException;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-public abstract class Actividad {
+public abstract class Actividad implements Serializable {
     private int id;
     private String titulo;
     private int cupoMaximo;
@@ -26,9 +26,7 @@ public abstract class Actividad {
         this.id = id;
         this.titulo = titulo;
 
-        this.cupoMaximo = (cupo > CUPO_MINIMO)
-                        ? cupo
-                        : CUPO_MINIMO;
+        this.cupoMaximo = cupo;
 
         this.inscripciones = new ArrayList<>();
     }
@@ -89,5 +87,8 @@ public abstract class Actividad {
 
     public final void mostrarIdentificacion() {
         System.out.println("- " + getTipo() + ": " + titulo + " (id=" + id + ")" + " - Cupo máximo: " + cupoMaximo);
+    }
+    public List<Inscripcion> getInscripciones() {
+        return inscripciones;
     }
 }
